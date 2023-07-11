@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-size: 100% 100vh;
+            background-repeat: no-repeat;
+            background-image: url(./photos/sdsa.jpg);
+        }
+        #Time{
+           font-size: 20vw;
+           position: absolute;
+           left: 10vw;
+           color: white;
+           text-shadow: 5px 5px 5px red;
+        }
+        #Date{
+           font-size: 10vw;
+           position: absolute;
+           top: 43vh;
+           left: 20vw;
+           color: white;
+           text-shadow: 5px 5px 5px red;
+        }
+        #Day{
+           font-size: 10vw;
+           position: absolute;
+           top: 70vh;
+            left: 33vw;
+           color: white;
+           text-shadow: 5px 5px 5px red;
+        }
+        #Sec{
+           font-size: 20vw;
+           position: absolute;
+           top: 55vh;
+            right: 5vw;
+           color: white;
+           text-shadow: 5px 5px 5px red;
+        }
+        #greet{
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(128, 128, 128, 0.929);
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+        }
+        #close{
+            font-size: 25px;
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: rotate 0.2s;
+        }
+        #close:hover{
+            rotate: 360deg;
+        }
+    </style>
+</head>
+<body id="bi" onload="greet()">
+    <h1 id="Time"></h1>
+    <h1 id="Date"></h1>
+    <h1 id="Sec"></h1>
+    <h1 id="Day"></h1>
+    <div id="greet" >
+        <button id="close" onload="greet()" onclick="cl()">X</button>
+        <h1 id="greetmessage"></h1>
+    </div>
+    <script>
+        function nogreet()
+        {
+            document.getElementById("greet").setAttribute("style","display:none")
+        }
+        function greet()
+        {
+            var date=new Date();
+            var hh=date.getHours();
+            if (hh>=6 && hh<12)
+            {
+                document.getElementById("greetmessage").innerHTML="Good Morning"
+            }
+            else if (hh>=12 && hh<=16)
+            {
+                document.getElementById("greetmessage").innerHTML="Good Afternoon"
+            }
+            else if (hh>=16 && hh<20)
+            {
+                document.getElementById("greetmessage").innerHTML="Good Evening"
+            }
+            else
+            {
+                document.getElementById("greetmessage").innerHTML="Good Night"
+            }
+        }
+        function dateAndTime()
+        {
+            var date=new Date()
+        var hh=date.getHours();
+        var min=date.getMinutes();
+        var ss=date.getSeconds();
+        var mo=date.getMonth();
+        var dt=date.getDate();
+        var yr=date.getFullYear();
+        var d=date.getDay();
+        var am_pm="AM";
+        switch(mo)
+        {
+            case 0:mo="Jan";
+            break;
+            case 1:mo="Feb";
+            break;
+            case 2:mo="Mar";
+            break;
+            case 3:mo="Apr";
+            break;
+            case 4:mo="May";
+            break;
+            case 5:mo="Jun";
+            break;
+            case 6:mo="Jul";
+            break;
+            case 7:mo="Aug";
+            break;
+            case 8:mo="Sep";
+            break;
+            case 9:mo="Oct";
+            break;
+            case 10:mo="Nov";
+            break;
+            case 11:mo="Dec";
+            break;
+        }
+        switch(d)
+        {
+            case 0:d="Sunday";
+            document.getElementById("bi").style.backgroundImage="url(./photos/dsa.jpg)"
+            break;
+            case 1:d="Monday";
+            document.getElementById("bi").style.backgroundImage="url(./photos/feds.jpg)"
+            break;
+            case 2:d="Tuesday";
+            document.getElementById("bi").style.backgroundImage="url(./photos/nhb.jpg)"
+            break;
+            case 3:d="Wednesday";
+            document.getElementById("bi").style.backgroundImage="url(./photos/sacas.jpg)"
+            break;
+            case 4:d="Thursday";
+            document.getElementById("bi").style.backgroundImage="url(./photos/sas.jpg)"
+            break;
+            case 5:d="Friday";
+            document.getElementById("bi").style.backgroundImage="url(./photos/sasa.jpg)"
+            break;
+            case 6:d="Saturday";
+            document.getElementById("bi").style.backgroundImage="url(./photos/sdsa.jpg)"
+            break;
+        }
+        if(hh>=12)
+        {
+            hh-=12;
+            am_pm="PM";
+            if(hh==1)
+            {
+                hh=12;
+            }
+        }
+        var totalTime=hh+":"+min+" "+am_pm;
+        document.getElementById("Time").innerHTML=totalTime;
+        var totalDate=dt+" - "+mo+" - "+yr;
+        document.getElementById("Date").innerHTML=totalDate;
+        document.getElementById("Day").innerHTML=d;
+        document.getElementById("Sec").innerHTML=ss;
+        console.log(hh,min,ss,am_pm,mo,dt,yr,d)
+        var update=setTimeout(function(){dateAndTime()},1000);
+        }
+        dateAndTime();
+        var close=setTimeout(nogreet,5000);
+        function cl(){
+            document.getElementById("greet").setAttribute("style","display:none")
+        }
+    </script>
+</body>
+</html>
